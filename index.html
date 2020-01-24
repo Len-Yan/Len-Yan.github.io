@@ -1,77 +1,180 @@
-<!-- CptS 489, Spring 2020
-     Project: IA #1
-     File: index.html
-     This file defines a skeleton single page web app using pure JavaScript.
+<!-- CptS 489, Spring 2020 
+     Coding Demo: W21C1
+     File: index.html -- Defines the visual appearance of a demo web app with
+     fixed top and bottom bars and a dynamic side menu.
 -->
 
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Begin HEAD section of document. Here we must use HTML comments as shown here. -->
-    <!-- Default target for all hyperlinks in this file is _top; see https://www.w3schools.com/tags/att_base_target.asp -->
+    <!-- Begin HEAD section of document. Here we must use HTML comments as shown
+    here. -->
+    <!-- Default target for all hyperlinks in this file:
+    https://www.w3schools.com/tags/att_base_target.asp -->
     <base target="_top"> 
-    <!-- Provide metadata on this file. Can be used by browsers, search engines, etc. -->
+    <!-- Provide metadata on this file. Can be used by browsers, search engines,
+    etc. -->
     <meta charset="utf-8">
-    <!-- HTML5 method that specifies viewable part of page ('viewport'). Always use the following,
-         which sets the width of the page to the width of the device and scales page content to fit into page-->
+    <!-- HTML5 method that specifies viewable part of page ('viewport'). Always
+         use the following, which sets the width of the page to the width of the
+         device and scales page content to fit into page-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Import External stylesheets and libraries using 'CDN' (content delivery network) links: -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Our local CSS stylesheets -->
+    <!-- Import External stylesheets and libraries using 'CDN' (content delivery
+    network) links: -->
+    <link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">    
+    <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+    <!-- Our local CSS stylesheet -->
     <link rel="stylesheet" href = "styles/navbar.css">
 
 </head>
  
 <body>
   <!-- Begin the BODY section of the document.  -->
-  
-  <!-- Fixed menu and button content goes here to define app structure: the top bar,
-       the side menu, the bottom bar, and the floating contextual action button  -->
-  <div id="navBar" class="navbar" w3-include-html="html/navBar.html"></div>
-  <div id="sideMenu" class="sidenav" w3-include-html="html/sideMenu.html"></div>
-
-   <!-- START BOTTOM NAVBAR -->
-   <div class="bottombar" id="theBottomBar" style="z-index: 100" w3-include-html="html/bottomBar.html">
-   </div> 
-  <!-- END BOTTOM NAVBAR -->
-    
-  <!-- Single App page definitions go here. -->
-  <!-- Login page definition  -->
-  <div id="loginDiv" class="paddedPage">
-    <h1 align="center">Login Page</h1>
-    <div w3-include-html="html/underConstruction.html" ></div>
-  </div>
-   <!-- Profile page for viewing and editing user settings -->
-   <div id="profileDiv"  class="paddedPage">
-    <h1 align="center">Profile Page</h1>
-    </div w3-include-html="html/underConstruction.html" ></div>
-  </div>
-
-  <!-- Rounds page displaying the user's round history -->
-  <div id="roundsDiv" class="paddedPage">
-      <h1 align="center">Round History Page</h1>
-    <div w3-include-html="html/underConstruction.html" ></div>
-  </div>
-
-  <!-- Page for logging a new round -->
-  <div id="logRoundDiv" class="paddedPage">
-      <h1 align="center">Log Round Page</h1>
-    <div w3-include-html="html/underConstruction.html" ></div>
-  </div>
-
-   <!-- Page  for displaying and searching for courses -->
-   <div id="coursesDiv"  class="paddedPage">
-      <h1 align="center">Courses Page</h1>
-      <div w3-include-html="html/underConstruction.html" > </div>
-   </div>
+   <!-- Define Favicon -->
    
- </body>
+   <!--
+   <link rel='shortcut icon' type='image/x-icon' href="https://dl.dropboxusercontent.com/s/79q9a1xy2148unf/SpeedScore3Icon.ico" />
+    -->
+
+  <!-- Fixed menu and button content goes here to define app structure: the top
+       bar, the side menu, the bottom bar, and the floating contextual action
+       button  -->
+  <!-- The top navigation bar -->
+  <div id="navBar" class="navbar">  
+    <span class="navbarItems">
+      <button id="menuBtn" style="background-color: transparent;
+      border-color:#13294E; text-align: center">
+        <span id="menuBtnIcon" class="fas fa-bars" style="color:white;
+        font-size: 30px; cursor:pointer; text-align: center">
+        </span>
+      </button>
+   
+      <img src="https://pbs.twimg.com/profile_images/1116758961330376704/wDjWgTzZ_400x400.png" alt="wsu title Logo" height="38px"
+      width="38px">
+     
+      <span id="topBarTitle" style="color:white; font-size: 18px">
+        &nbsp My Web </span>
+    </span>
+  </div>
   
+  
+ <!--BEGIN SIDE MENU -->
+ <div id="sideMenu" class="sidenav" >
+   <!--SIDE MENU TITLE -->
+  <div class="sidenavtitle">
+      <img src='/local/p1.png' height='50' width='40'>
+      <span id="userID" style="font-size:14px">&nbsp;Lengfan
+      Yan&nbsp;&nbsp;</span>
+   </div>
+   <!--BEGIN MENU CONTENT-->
+ <div id="mainMenuContent">
+ <!--BEGIN GROUP OF MODE/ACTION BUTTONS -->
+ <!--Mode buttons show current mode Action buttons are contextual; they provide
+    easy access to most important functionality in current mode 
+  -->
+  <a id= "About" class="menuItem AboutModeItem"><span class=""></span>&nbsp;Home page</a>
+  <a id= "About2" class="menuItem AboutModeItem"><span class=""></span>&nbsp;Personal infor</a>
+  <a id= "About3" class="menuItem AboutModeItem"><span class=""></span>&nbsp;About this web</a>
+
+  <a id= "Portfolio" class="menuItem PortfolioModeItem"><span class=""></span>&nbsp;Portfolio Home</a>
+  <a id= "Portfolio2" class="menuItem PortfolioModeItem"><span class=""></span>&nbsp;Education</a>
+  <a id= "Portfolio3" class="menuItem PortfolioModeItem"><span class=""></span>&nbsp;Work experience</a>
+
+  <a id= "Hobbies" class="menuItem HobbiesModeItem" ><span class=""></span>&nbsp;Hobbies Home</a>
+  <a id= "Hobbies2" class="menuItem HobbiesModeItem" ><span class="fas fa-language"></span>&nbsp;Animate</a>
+  <a id= "Hobbies3" class="menuItem HobbiesModeItem" ><span class="fas fa-gamepad"></span>&nbsp;Games</a>
+ 
+   <!-- END GROUP OF MODE/ACTION BUTTONS -->
+</div>
+<!-- END MAIN MENU CONTENT -->
+</div>
+<!-- END SIDEMENU -->
+
+<!-- BEGIN FIXED BOTTOM BAR -->
+<div id="bottomBar" class="bottombar">
+<a id="AboutMode" class="bottomBarBtn"><span style="display:block; padding-top:3px"
+class="nonMenuItem fas fa-user"></span><span style="display:block;font-size:
+small">About Me</span></a>
+<a id="PortfolioMode" class="bottomBarBtn"><span style="display:block; padding-top:3px"
+class="nonMenuItem fas fa-book"></span><span style="display:block;font-size:
+small">Portfolio</span></a>
+<a id="HobbiesMode" class="bottomBarBtn"><span style="display:block; padding-top:3px"
+class="nonMenuItem fas fa-star"></span><span style="display:block;font-size:
+small">Hobbies</span></a> 
+</div>
+<!-- END FIXED BOTTOM BAR-->
+ 
+  <!-- BEGIN APP PAGE DEFINITIONS -->
+ 
+   <!-- About page1-->
+   <div id="AboutModeDiv"  class="paddedPage">
+    <h1 align="center">About Me</h1>
+    <div w3-include-html="html/about_home.html" ></div>
+  </div>
+
+   <!-- About page2 -->
+   <div id="About2Div"  class="paddedPage">
+      <h1 align="center">About Me</h1>
+      <div w3-include-html="html/about_2.html" ></div>
+    </div>
+
+   <!-- About page3 -->
+   <div id="About3Div"  class="paddedPage">
+    <h1 align="center">About Me</h1>
+    <div w3-include-html="html/about_3.html" ></div>
+  </div>
+
+
+  <!-- Portfolio 1 -->
+  <div id="PortfolioModeDiv" class="paddedPage">
+      <h1 align="center">Portfolio</h1>
+    <div w3-include-html="html/Portfolio_home.html" ></div>
+  </div>
+
+  <!-- Portfolio 2 -->
+  <div id="Portfolio2Div" class="paddedPage">
+      <h1 align="center">Portfolio</h1>
+    <div w3-include-html="html/Portfolio_2.html" ></div>
+  </div>
+
+   <!-- Portfolio 3 -->
+   <div id="Portfolio3Div"  class="paddedPage">
+      <h1 align="center">Portfolio</h1>
+      <div w3-include-html="html/Portfolio_3.html" > </div>
+   </div>
+
+
+     <!-- Hobbies 1 -->
+  <div id="HobbiesModeDiv" class="paddedPage">
+    <h1 align="center">Hobbies</h1>
+  <div w3-include-html="html/Hobbies_home.html" ></div>
+</div>
+
+<!-- Hobbies 2 -->
+<div id="Hobbies2Div" class="paddedPage">
+    <h1 align="center">Hobbies</h1>
+  <div w3-include-html="html/Hobbies_Lang.html" ></div>
+</div>
+
+ <!-- Hobbies 3 -->
+ <div id="Hobbies3Div"  class="paddedPage">
+    <h1 align="center">Hobbies</h1>
+    <div w3-include-html="html/Hobbies_games.html" > </div>
+ </div>
+
+  <!-- END APP PAGE DEFINITIONS -->
+    </body>
   <!-- Begin SCRIPT section of document. -->
   
   <script src="scripts/includeHTML.js"></script>
   <script src="scripts/eventHandlers.js"></script>
   <script src="scripts/startUp.js"></script>
+ 
    
 </html>

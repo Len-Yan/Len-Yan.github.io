@@ -1,29 +1,101 @@
-////////////////////////////////////////////////////////////////////////////
-//eventHandlers.js -- This file includes JavaScript functions used to handle
-//user interaction and page navigation.
-////////////////////////////////////////////////////////////////////////////
+//
+//eventHandlers.js -- This file defines the JavaScript functions necessary to
+//update the app in response to user interaction.
+//
 
-/* bindListenerToClassName -- Given a (CSS) class name, a function, and a listener type (e.g., "click"),
-this function iterates through all elements with the class, binding the event listener function to 
-the appropriate listener type. 
-This is a utility function that allows us to bind the same function to all elements of a class. */
-function bindListenerToClassName(className, func, listenerType) {
-    var classes = document.getElementsByClassName(className);
-    for (var i = 0; i < classes.length; ++i) {
-      classes[i].addEventListener(listenerType,func);
+//document click: When the user clicks anywhere in the doc and the menu is open
+//we need to close it and toggle menu state variable.
+document.addEventListener("click",function(e) {
+  if (menuOpen) {
+    document.getElementById("menuBtnIcon").classList.remove("fa-times"); 
+    //Change hamburger to X when menu open
+    document.getElementById("menuBtnIcon").classList.add("fa-bars");
+    document.getElementById("sideMenu").style.width = "0px"; //close menu
+    menuOpen = false;
+  }
+});
+ 
+//menuBtn click: When the top-left side menu button is clicked and the menu
+//is closed, we need to open it and toggle menu state variable.
+document.getElementById("menuBtn").addEventListener("click",function(e) {
+  if (!menuOpen) {
+    document.getElementById("menuBtnIcon").classList.remove("fa-bars"); 
+    //Change hamburger to X when menu open
+    document.getElementById("menuBtnIcon").classList.add("fa-times");
+    document.getElementById("sideMenu").style.width = "250px"; //open up menu
+    menuOpen = true;
+    //toggleInputDisabled(true);
+    e.stopPropagation();
+  }
+});                                                        
+
+var bottomBarBtnClick = function() {
+  if (mode != this.id) {
+    document.getElementById(mode).classList.remove("menuItemSelected");
+
+    document.getElementById(mode + "Div").style.display = "none";
+
+    this.classList.add("menuItemSelected");
+    let menuItems = document.getElementsByClassName(mode + "Item");
+    for (let i = 0; i < menuItems.length; ++i) {
+      menuItems[i].style.display = "none";
+    }
+    mode = this.id;
+    document.getElementById("topBarTitle").textContent = modeToTitle[mode];
+    document.getElementById(mode + "Div").style.display = "block";
+    menuItems = document.getElementsByClassName(mode + "Item");
+    for (let i = 0; i < menuItems.length; ++i) {
+      menuItems[i].style.display = "block";
     }
   }
-  
-  //menuBtn click: When the top-left side menu button is clicked, we need to act based on which icon is
-  //presently displayed -- hamburger or left arrow. If hamburger, we need to check what mode we're in 
-  //and what the current page is and change the menu contents accordingly. If left arrow, we need to hide
-  //the menu.
-  
-  // sideMenuItem Click: This function does the side menu housekeeping in cases where the item clicked 
-  // (of class sideMenuItem) is actually a redirect to another page.  
-  
-  //document click: If the user clicks anywhere in the document while the side menu is open, we need to
-  //close the menu, toggle the menu state, and re-enable all buttons/input fields on the page.
-  
-  //modeBtn click: When the user clicks on a mode button in the bottom fixed bar, we need to switch to
-  //the corresponding area of the app.   
+}
+
+
+//event for side bar
+var sideBtnClick = function() {
+  if (mode != this.id) {
+    console.log(mode);
+
+    // keep bottombar highlight
+    let a = document.getElementById(mode).classList.value
+    console.log(a);
+    if(a != "bottomBarBtn menuItemSelected"){
+      document.getElementById(mode).classList.remove("menuItemSelected");//
+    }
+    document.getElementById(mode + "Div").style.display = "none";//
+
+    this.classList.add("menuItemSelected");//
+
+    let menuItems = document.getElementsByClassName(mode + "Item");
+
+    mode = this.id;//
+    document.getElementById("topBarTitle").textContent = modeToTitle[mode];//
+
+    //hard code home page of each area
+    if(mode == "About"){mode = "AboutMode";}
+    else if(mode == "Portfolio"){mode = "PortfolioMode";}
+    else if(mode == "Hobbies"){mode = "HobbiesMode";}
+
+    document.getElementById(mode + "Div").style.display = "block";
+    menuItems = document.getElementsByClassName(mode + "Item");
+    for (let i = 0; i < menuItems.length; ++i) {
+      menuItems[i].style.display = "block";
+    }
+  }
+}
+
+
+document.getElementById("AboutMode").addEventListener("click",bottomBarBtnClick);
+document.getElementById("PortfolioMode").addEventListener("click",bottomBarBtnClick);
+document.getElementById("HobbiesMode").addEventListener("click",bottomBarBtnClick);
+
+
+document.getElementById("About").addEventListener("click",sideBtnClick);
+document.getElementById("About2").addEventListener("click",sideBtnClick);
+document.getElementById("About3").addEventListener("click",sideBtnClick);
+document.getElementById("Portfolio").addEventListener("click",sideBtnClick);
+document.getElementById("Portfolio2").addEventListener("click",sideBtnClick);
+document.getElementById("Portfolio3").addEventListener("click",sideBtnClick);
+document.getElementById("Hobbies").addEventListener("click",sideBtnClick);
+document.getElementById("Hobbies2").addEventListener("click",sideBtnClick);
+document.getElementById("Hobbies3").addEventListener("click",sideBtnClick);
